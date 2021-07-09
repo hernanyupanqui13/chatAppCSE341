@@ -1,0 +1,42 @@
+<% include ../includes/header.ejs %>
+<!--<link href="/css/pr12.css" rel="stylesheet" type="text/css" />-->
+<link href="/css/chat_styles.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <% include ../includes/nav.ejs %>
+  
+    <h1 class="text-center">Live chat:</h1>
+
+    <div class="container content">
+      <div class="row justify-content-md-center">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+          <div class="card">
+            <div class="card-header">Chat</div>
+            <div class="card-body height3 chat-box-body">
+              <ul class="chat-list" id="chatBox">
+              </ul>
+            </div>
+            <% if (user) { %>
+              <div class="chat-message clearfix card-footer">
+                <div class="input-group mb-0">
+                  <div class="input-group-prepend send-btn" onclick="postMessage()">
+                    <span class="input-group-text"><i class="fas fa-paper-plane"></i></span>
+                  </div>
+                  <input type="text" id="message" class="form-control" placeholder="Enter text here...">                                    
+                </div>
+              </div>
+              <input type="hidden" value="<%= user %>" name="user" id="user">
+            <% } else { %>
+              <p>No login, view only.</p>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/pr12-chat.js"></script>
